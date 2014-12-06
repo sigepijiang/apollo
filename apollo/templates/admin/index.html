@@ -1,4 +1,25 @@
 {% extends '_base.html' %}
 
-{% block content %}
+{% block title %}Canvas平面图{% endblock %}
+{% block style %}
+	{{ super() }}
+    <link href="{{ static_file('css/admin.css') }}" rel="stylesheet" type="text/css"/>
 {% endblock %}
+
+{% block content %}
+	<div id="contentContainer" class="container">
+		<textarea name="" id="planCoordinate" cols="30" rows="10" placeholder="x1,y1 x2,y2 ..."></textarea>
+		<input id="drawBtn" type="button" value="draw">
+		<input id="delBtn" type="button" value="Del">
+		<canvas id="canvas">
+			This is a Canvas~!
+		</canvas>
+		<p id="svgList">
+		</p>
+	</div>
+{% endblock %}
+
+{% block script %}
+	{{ super() }}
+	<script src="{{ static_file('js/admin/drawPlan.js') }}"></script>
+{% endblock%}
