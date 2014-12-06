@@ -1,0 +1,7 @@
+*.pyc
+*.*DS_Store
+.py/
+*.rdb
+env/
+*node_modules
+share/url_maps/*.yaml
