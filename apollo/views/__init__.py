@@ -28,3 +28,5 @@ blueprint_www.add_url_rule(
     '/i/<ukey:uid>/', view_func=ProfileView.as_view(), methods=['GET'],
     endpoint='profile'
 )
+
+from .admin import blueprint_admin
