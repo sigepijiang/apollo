@@ -24,7 +24,10 @@ class UserModel(db.Model, db.TableOpt):
     birthday = sa.Column(sa.DateTime())
     title = sa.Column(sa.Unicode(128))
     summary = sa.Column(sa.Unicode(256))
-    date_created = sa.Column(sa.DateTime(), default=datetime.now)
+    date_created = sa.Column(
+        sa.DateTime(), default=datetime.now,
+        server_default=sa.func.NOW(),
+    )
 
     # setting = sa.relationship(
     #     'setting', uselist=False,
