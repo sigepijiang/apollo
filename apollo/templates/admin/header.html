@@ -1,0 +1,17 @@
+<div class="header">
+    <ul class="nav nav-pills pull-right">
+        <li {% if request.route.name.startswith('market') -%}class="active"{%- endif %}><a href="{{ url_for('apollo:admin.market_list') }}">商城列表</a></li>
+        
+        <li {% if request.route.name.startswith('floor') -%}class="active"{%- endif %}><a href="{{ url_for('apollo:admin.floor_list') }}">楼层列表</a></li>
+        <li {% if request.route.name.startswith('shop') -%}class="active"{%- endif %}><a href="{{ url_for('apollo:admin.shop_list') }}">商店管理</a></li>
+
+        {# 
+        <li {% if request.endpoint.split('.')[1].startswith('block') -%}class="active"{%- endif %}><a href="{{ url_for('zone:admin.block_list') }}">页面模块管理</a></li>
+
+        <li {% if request.endpoint.split('.')[1].startswith('article') -%}class="active"{%- endif %}><a href="{{ url_for('zone:admin.article_list') }}">专区文章管理</a></li>
+        #}
+    </ul>
+    <h3 class="text-muted">专区管理后台</h3>
+</div>
+<hr/>
+

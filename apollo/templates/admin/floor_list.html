@@ -1,0 +1,29 @@
+{% extends 'admin/layout.html' %}
+
+{% block container %}
+<a class="btn btn-primary btn-lg btn-block" href="{{ url_for('apollo:admin.floor_create') }}">添加</a>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>名称</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for s in shop_list %}
+    <tr>
+        <td>{{ s.id }}</td>
+        <td><a target="_blank" href="">{{ s.name }}</a></td>
+        <td>
+            <a class='btn btn-default btn-primary' href="{{ url_for('apollo:admin.floor_edit', floor_id=f.id) }}">编辑</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+{% endblock %}

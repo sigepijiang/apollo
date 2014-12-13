@@ -1,0 +1,25 @@
+{% macro render_field(field, value=None, enable_label=True, classes=[], texttype='') %}
+
+{% set label_class = kwargs.pop('label_class', 'col-sm-2') %}
+{% set input_class = kwargs.pop('input_class', 'col-sm-6') %}
+{% set placeholder = kwargs.pop('placeholder', '') %}
+
+<div class="form-group {% if field.errors %}has-error{% endif %}">
+    {% if enable_label %}
+    <lable for="{{ field.id or ('input' ~ field.name) }}" class="{{ label_class }} control-label">{{ field.label.text }}</lable>
+    {% endif %}
+    <div class="{{ input_class }}">
+        {% if caller %}
+        {{ caller() }}
+        {% else %}
+        {% set field_class = 'form-control ' + ','.join(classes) %}
+        {{ field(class=field_class, id=field.id or ('input' + field.name), value=value or field.data or '', placeholder=field.description, texttype=texttype) }} 
+        {% endif %}
+
+        {% if field.errors %}
+        <p class="text-warning">{{field.errors[0]}}</p>
+        {% endif %}
+
+    </div>
+</div>
+{% endmacro %}

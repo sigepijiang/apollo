@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{{ title }}</title>
+    </head>
+        {% block styles %}
+        <link href="{{ static_file('css/lib/bootstrap.css') }}" rel="stylesheet" type="text/css"/>
+        {% endblock %}
+    <body>
+        <div class="container">
+            {% block header %}
+            {% include 'admin/header.html' %}
+            {% endblock %}
+
+            {% block container %}
+            {% endblock %}
+
+            {% block footer %}
+            {% endblock %}
+        </div>
+
+        {% block scripts %}
+        <script type="text/javascript" src="{{ static_file('js/lib/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ static_file('js/lib/bootstrap.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>
+

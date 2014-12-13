@@ -6,9 +6,9 @@ from share.framework.bottle import Avalon
 app = Avalon(__name__)
 
 from .views import blueprint_www
-from .views import blueprint_admin
+from .views import bp_admin
 app.register_blueprint(blueprint_www)
-app.register_blueprint(blueprint_admin)
+app.register_blueprint(bp_admin)
 
 
 from .backends import bp_backends

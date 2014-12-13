@@ -29,4 +29,4 @@ blueprint_www.add_url_rule(
     endpoint='profile'
 )
 
-from .admin import blueprint_admin
+from .admin import bp_admin

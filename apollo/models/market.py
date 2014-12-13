@@ -5,7 +5,6 @@ from datetime import datetime
 import sqlalchemy as sa
 
 from share.framework.bottle.engines import db
-from share.utils.base62 import to_url
 from share.sa.types import JSONType
 
 
@@ -39,6 +38,14 @@ class MarketFloorModel(db.Model, db.TableOpt):
         server_default=sa.func.NOW(),
     )
 
+    market = db.relationship(
+        'MarketModel',
+        primaryjoin='MarketFloorModel.market_id == MarketModel.id',
+        foreign_keys='[MarketFloorModel.market_id]',
+        lazy='joined',
+        backref=db.backref('floors', lazy='dynamic')
+    )
+
 
 class MarketShopModel(db.Model, db.TableOpt):
     __tablename__ = 'shop'
@@ -50,6 +57,14 @@ class MarketShopModel(db.Model, db.TableOpt):
     date_created = sa.Column(
         sa.DateTime(), default=datetime.now,
         server_default=sa.func.NOW(),
+    )
+
+    floor = db.relationship(
+        'MarketFloorModel',
+        primaryjoin='MarketFloorModel.id == MarketShopModel.floor_id',
+        foreign_keys='[MarketShopModel.floor_id]',
+        lazy='joined',
+        backref=db.backref('shops', lazy='dynamic')
     )
 
 
