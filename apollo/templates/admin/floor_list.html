@@ -17,6 +17,7 @@
         <td><a target="_blank" href="">{{ s.name }}</a></td>
         <td>
             <a class='btn btn-default btn-primary' href="{{ url_for('apollo:admin.floor_edit', floor_id=f.id) }}">编辑</a>
+            <a class='btn btn-default btn-primary' href="{{ url_for('apollo:admin.floor_layout', floor_id=f.id) }}">商店布局</a>
         </td>
     </tr>
     {% endfor %}

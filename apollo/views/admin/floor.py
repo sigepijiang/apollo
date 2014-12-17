@@ -1,8 +1,8 @@
 #-*- coding: utf-8 -*-
-
-from .base import AdminListView, AdminEditView
+from share.framework.bottle import MethodView, render_template
 
 from apollo.models import MarketFloorModel
+from .base import AdminListView, AdminEditView
 from . import forms
 
 
@@ -22,3 +22,8 @@ class FloorEditAdmin(AdminEditView):
     redirect_page = 'apollo:admin.floor_list'
     form = forms.FloorEditForm
     query_args = ['floor_id']
+
+
+class FloorLayoutEditAdmin(MethodView):
+    def get(self, floor_id):
+        return render_template('admin/floor_layout.html')

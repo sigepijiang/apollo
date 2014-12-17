@@ -2,7 +2,7 @@
 
 from share.framework.bottle.app import Blueprint
 from .market import MarketListAdmin, MarketEditAdmin
-from .floor import FloorListAdmin, FloorEditAdmin
+from .floor import FloorListAdmin, FloorEditAdmin, FloorLayoutEditAdmin
 from .shop import ShopListAdmin, ShopEditAdmin
 
 bp_admin = Blueprint('admin', subdomain='www', url_prefix='/admin')
@@ -45,6 +45,12 @@ bp_admin.add_url_rule(
     methods=['GET', 'POST'],
     endpoint='floor_create',
     defaults={'floor_id': None}
+)
+bp_admin.add_url_rule(
+    '/floor/<floor_id:int>/layout/',
+    view_func=FloorLayoutEditAdmin.as_view(),
+    methods=['GET', 'POST'],
+    endpoint='floor_layout',
 )
 
 bp_admin.add_url_rule(
