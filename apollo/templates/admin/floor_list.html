@@ -5,16 +5,14 @@
 <table class="table table-hover">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>名称</th>
+            <th>楼层</th>
             <th>操作</th>
         </tr>
     </thead>
     <tbody>
     {% for f in floor_list %}
     <tr>
-        <td>{{ f.id }}</td>
-        <td><a target="_blank" href="">{{ f.name }}</a></td>
+        <td>{{ f.floor }}</td>
         <td>
             <a class='btn btn-default btn-primary' href="{{ url_for('apollo:admin.floor_edit', floor_id=f.id) }}">编辑</a>
             <a class='btn btn-default btn-primary' href="{{ url_for('apollo:admin.floor_layout', floor_id=f.id) }}">商店布局</a>
