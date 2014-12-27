@@ -13,14 +13,21 @@
 			<input id="delBtn" type="button" value="Del" />
 			<input id="drawBtn" type="button" value="Draw" />
         </div>
+		<div id="canvasContainer" class="canvas-wrap">
+			<ul id="pointList" class="point-list">
 
-		<canvas id="canvas" class="canvas">
-			This is a Canvas~!
-		</canvas>
+			</ul>
+			<canvas id="canvas" class="canvas">
+				This is a Canvas~!
+			</canvas>
+		</div>
 	</div>
 {% endblock %}
 
 {% block scripts %}
+	<script>
+
+	</script>
 	{{ super() }}
 	<script src="{{ static_file('js/admin/drawPlan.js') }}"></script>
 {% endblock %}
