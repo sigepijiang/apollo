@@ -1,7 +1,9 @@
 #-*- coding: utf-8 -*-
+
+from share.framework.bottle.engines import db
 from share.framework.bottle import MethodView, render_template
 
-from apollo.models import MarketFloorModel
+from apollo.models import MarketFloorModel, MarketFloorLayoutModel
 from .base import AdminListView, AdminEditView
 from . import forms
 
@@ -26,4 +28,12 @@ class FloorEditAdmin(AdminEditView):
 
 class FloorLayoutEditAdmin(MethodView):
     def get(self, floor_id):
-        return render_template('admin/floor_layout.html')
+        layout = MarketFloorLayoutModel.query.filter(
+            MarketFloorLayoutModel.floor_id == floor_id
+        ).first()
+        if not layout:
+            layout = MarketFloorLayoutModel(floor_id=floor_id)
+            db.session.add(layout)
+            db.session.commit()
+        return render_template(
+            'admin/floor_layout.html', layout=layout)

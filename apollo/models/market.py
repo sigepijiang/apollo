@@ -9,7 +9,12 @@ from share.sa.types import JSONType
 from share.sa.mutable import MutableDict
 
 
-__all__ = ['MarketModel', 'MarketFloorModel', 'MarketShopModel', 'MarketFloorLayoutModel']
+__all__ = [
+    'MarketModel',
+    'MarketFloorModel',
+    'MarketShopModel',
+    'MarketFloorLayoutModel'
+]
 
 
 class MarketModel(db.Model, db.TableOpt):
