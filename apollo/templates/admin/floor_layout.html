@@ -1,7 +1,7 @@
 {% extends 'admin/layout.html' %}
 
 {% block title %}Canvas平面图{% endblock %}
-{% block style %}
+{% block styles %}
 	{{ super() }}
     <link href="{{ static_file('css/admin.css') }}" rel="stylesheet" type="text/css"/>
 {% endblock %}
@@ -19,7 +19,11 @@
 	</div>
 {% endblock %}
 
-{% block script %}
+{% block scripts %}
 	{{ super() }}
 	<script src="{{ static_file('js/admin/drawPlan.js') }}"></script>
+    <script>
+        var floor_id = {{ layout.floor_id|tojson|safe }},
+            layout = {{ layout.data|tojson|safe }};
+    </script>
 {% endblock%}
