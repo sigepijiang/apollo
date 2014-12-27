@@ -1,25 +1,26 @@
 {% extends 'admin/layout.html' %}
 
 {% block title %}Canvas平面图{% endblock %}
-{% block style %}
+{% block styles %}
 	{{ super() }}
     <link href="{{ static_file('css/admin.css') }}" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
-{% block containert %}
-	<div id="contentContainer" class="container">
-		<input id="drawBtn" type="button" value="Draw" />
-		<input id="delBtn" type="button" value="Del" />
-        <input id="nextBtn" type="button" value="Next" data-operation="" />
-		<canvas id="canvas">
+{% block container %}
+	<div id="contentContainer" class="drawplan-container">
+        <div class="btn-wrap">
+			<input id="nextBtn" type="button" value="Next" data-operation="" />
+			<input id="delBtn" type="button" value="Del" />
+			<input id="drawBtn" type="button" value="Draw" />
+        </div>
+
+		<canvas id="canvas" class="canvas">
 			This is a Canvas~!
 		</canvas>
-		<p id="svgList">
-		</p>
 	</div>
 {% endblock %}
 
-{% block script %}
+{% block scripts %}
 	{{ super() }}
 	<script src="{{ static_file('js/admin/drawPlan.js') }}"></script>
-{% endblock%}
+{% endblock %}
