@@ -1,4 +1,4 @@
-{% extends '_base.html' %}
+{% extends 'admin/layout.html' %}
 
 {% block title %}Canvas平面图{% endblock %}
 {% block style %}
@@ -6,7 +6,7 @@
     <link href="{{ static_file('css/admin.css') }}" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
-{% block content %}
+{% block containert %}
 	<div id="contentContainer" class="container">
 		<input id="drawBtn" type="button" value="Draw" />
 		<input id="delBtn" type="button" value="Del" />
