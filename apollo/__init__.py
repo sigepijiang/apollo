@@ -13,3 +13,6 @@ app.register_blueprint(bp_admin)
 
 from .backends import bp_backends
 app.register_blueprint(bp_backends)
+
+from .apis import bp_apis
+app.register_blueprint(bp_apis)

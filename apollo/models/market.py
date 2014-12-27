@@ -6,9 +6,10 @@ import sqlalchemy as sa
 
 from share.framework.bottle.engines import db
 from share.sa.types import JSONType
+from share.sa.mutable import MutableDict
 
 
-__all__ = ['MarketModel', 'MarketFloorModel', 'MarketShopModel']
+__all__ = ['MarketModel', 'MarketFloorModel', 'MarketShopModel', 'MarketFloorLayoutModel']
 
 
 class MarketModel(db.Model, db.TableOpt):
@@ -45,6 +46,12 @@ class MarketFloorModel(db.Model, db.TableOpt):
         lazy='joined',
         backref=db.backref('floors', lazy='dynamic')
     )
+    layout = db.relationship(
+        'MarketFloorLayoutModel',
+        primaryjoin='MarketFloorLayoutModel.floor_id == MarketFloorModel.id',
+        foreign_keys='[MarketFloorLayoutModel.floor_id]',
+        lazy='joined', uselist=False,
+    )
 
 
 class MarketShopModel(db.Model, db.TableOpt):
@@ -73,7 +80,7 @@ class MarketFloorLayoutModel(db.Model, db.TableOpt):
 
     id = sa.Column(sa.Integer(), primary_key=True)
     floor_id = sa.Column(sa.Integer())
-    data = sa.Column(JSONType())
+    data = sa.Column(MutableDict.as_mutable(JSONType()))
     date_created = sa.Column(
         sa.DateTime(), default=datetime.now,
         server_default=sa.func.NOW(),
