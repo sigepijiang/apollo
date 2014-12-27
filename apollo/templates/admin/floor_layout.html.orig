@@ -23,8 +23,12 @@
 {% block scripts %}
 	{{ super() }}
 	<script src="{{ static_file('js/admin/drawPlan.js') }}"></script>
+<<<<<<< HEAD
     <script>
         var floor_id = {{ layout.floor_id|tojson|safe }},
             layout = {{ layout.data|tojson|safe }};
     </script>
 {% endblock%}
+=======
+{% endblock %}
+>>>>>>> a9188d7a1fd8aba88bb415638997e8064db1154c
