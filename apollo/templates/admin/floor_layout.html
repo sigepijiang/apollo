@@ -7,31 +7,38 @@
 {% endblock %}
 
 {% block container %}
-	<div id="contentContainer" class="drawplan-container">
-        <div class="btn-wrap">
-			<input id="nextBtn" type="button" value="Next" data-operation="" />
-			<input id="delBtn" type="button" value="Del" />
-			<input id="drawBtn" type="button" value="Draw" />
-        </div>
-		<div id="canvasContainer" class="canvas-wrap">
-			<ul id="pointList" class="point-list">
-
-			</ul>
-			<canvas id="canvas" class="canvas">
-				This is a Canvas~!
-			</canvas>
+	<div id="contentContainer" class="drawplan-container clearfix">
+        <div class="btn-wrap col-sm-2">
+			<a  id="saveBtn" href="#" class="btn btn-primary" role="button">保存</a>
+			<a  id="nextBtn" href="#" class="btn btn-default" role="button" data-operation="">下一步</a>
 		</div>
+		<div class="btn-wrap col-sm-6">
+			<a href="#" class="btn btn-info active" role="button" data-operation="bg">背景</a>
+			<a href="#" class="btn btn-info" role="button" data-operation="white">空地</a>
+			<a href="#" class="btn btn-info" role="button" data-operation="shop">店铺</a>
+			<a href="#" class="btn btn-info" role="button" data-operation="icon">指示</a>
+		</div>
+		<div class="btn-wrap form-group col-sm-4">
+			<select id="delOption" class="form-control del-option">
+
+			</select>
+			<a id="delBlockBtn" href="#" class="btn btn-danger" role="button">删除块</a>
+			<a id="delBtn" href="#" class="btn btn-danger" role="button">删除点</a>
+			<a id="drawBtn" href="#" class="btn btn-success" role="button">绘制</a>
+        </div>
+		<canvas id="canvas" class="canvas">
+			This is a Canvas~!
+		</canvas>
+		<ul id="pointList" class="point-list">
+		</ul>
 	</div>
 {% endblock %}
 
 {% block scripts %}
-	<script>
-
-	</script>
-	{{ super() }}
-	<script src="{{ static_file('js/admin/drawPlan.js') }}"></script>
     <script>
         var floor_id = {{ layout.floor_id|tojson|safe }},
             layout = {{ layout.data|tojson|safe }};
     </script>
+	{{ super() }}
+	<script src="{{ static_file('js/admin/drawPlan.js') }}"></script>
 {% endblock%}
