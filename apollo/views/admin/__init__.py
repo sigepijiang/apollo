@@ -72,3 +72,12 @@ bp_admin.add_url_rule(
     endpoint='shop_create',
     defaults={'shop_id': None}
 )
+
+
+from .shop import FloorShopListAdmin
+bp_admin.add_url_rule(
+    '/floor/<floor_id:int>/shops/',
+    view_func=FloorShopListAdmin.as_view(),
+    methods=['GET', 'POST'],
+    endpoint='floor_shops',
+)

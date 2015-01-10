@@ -2,7 +2,11 @@
 
 from .base import AdminListView, AdminEditView
 
-from apollo.models import MarketShopModel
+from share.framework.bottle import render_template, MethodView
+from share.framework.bottle.engines import db
+
+from apollo.models import MarketShopModel, MarketFloorModel
+from apollo.models import MarketFloorLayoutModel
 from . import forms
 
 
@@ -22,3 +26,17 @@ class ShopEditAdmin(AdminEditView):
     redirect_page = 'apollo:admin.shop_list'
     form = forms.ShopEditForm
     query_args = ['shop_id']
+
+
+class FloorShopListAdmin(MethodView):
+    def get(self, floor_id):
+        floor = MarketFloorModel.query.get(floor_id)
+        layout = MarketFloorLayoutModel.query.filter(
+            MarketFloorLayoutModel.floor_id == floor_id
+        ).first()
+        if not layout:
+            layout = MarketFloorLayoutModel(floor_id=floor_id)
+            db.session.add(layout)
+            db.session.commit()
+        return render_template(
+            'admin/floor_shops.html', floor=floor, layout=layout)
