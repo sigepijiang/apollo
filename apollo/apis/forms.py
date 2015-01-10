@@ -10,6 +10,22 @@ ukey = {
 nickname = {
 }
 
+id = {
+    voluptuous.Required('id'): voluptuous.Coerce(int),
+}
+
+floor_id = {
+    voluptuous.Required('floor_id'): voluptuous.Coerce(int),
+}
+
+name = {
+    voluptuous.Required('name'): voluptuous.Coerce(unicode),
+}
+
+phone = {
+    voluptuous.Required('phone'): voluptuous.Coerce(unicode),
+}
+
 gender = {}
 title = {}
 summary = {}

@@ -10,13 +10,13 @@ from apollo.models import MarketModel, MarketFloorModel
 
 
 class MarketEditForm(Form):
-    name = StringField(u'商店名称', validators=[Required(u'商店名称必填')])
+    name = StringField(u'商城名称', validators=[Required(u'商城名称必填')])
     title = StringField(
-        u'商店标题', validators=[Required(u'商店标题必填')])
+        u'商城标题', validators=[Required(u'商城标题必填')])
     description = TextAreaField(
-        u'商店描述', validators=[Required(u'商店描述必填')])
+        u'商城描述', validators=[Required(u'商城描述必填')])
     address = TextAreaField(
-        u'商店地址', validators=[Required(u'商店地址必填')])
+        u'商城地址', validators=[Required(u'商城地址必填')])
     phone = StringField(
         u'联系方式', validators=[Required(u'联系方式必填')])
 

@@ -65,7 +65,8 @@ class MarketShopModel(db.Model, db.TableOpt):
     id = sa.Column(sa.Integer(), primary_key=True)
     floor_id = sa.Column(sa.Integer())
     name = sa.Column(sa.Unicode(32), nullable=False)
-    logo = sa.Column(sa.String())
+    logo = sa.Column(sa.String(32))
+    phone = sa.Column(sa.String(16))
     date_created = sa.Column(
         sa.DateTime(), default=datetime.now,
         server_default=sa.func.NOW(),
@@ -78,6 +79,14 @@ class MarketShopModel(db.Model, db.TableOpt):
         lazy='joined',
         backref=db.backref('shops', lazy='dynamic')
     )
+
+    def as_dict(self):
+        return {
+            'id': self.id,
+            'floor_id': self.floor_id,
+            'name': self.name,
+            'phone': self.phone,
+        }
 
 
 class MarketFloorLayoutModel(db.Model, db.TableOpt):
