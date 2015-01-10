@@ -49,7 +49,8 @@ def upgrade():
         sa.Column('id', sa.Integer(), primary_key=True),
         sa.Column('floor_id', sa.Integer()),
         sa.Column('name', sa.Unicode(32)),
-        sa.Column('logo', sa.Integer()),
+        sa.Column('logo', sa.CHAR(32)),
+        sa.Column('phone', sa.String(16)),
         sa.Column(
             'date_created', sa.DateTime(), default=datetime.now,
             server_default=sa.func.now(),
@@ -69,7 +70,7 @@ def upgrade():
 
 
 def downgrade():
-    sa.drop_table('market_floor_layout')
-    sa.drop_table('shop')
-    sa.drop_table('floor')
-    sa.drop_table('market')
+    op.drop_table('market_floor_layout')
+    op.drop_table('shop')
+    op.drop_table('floor')
+    op.drop_table('market')
