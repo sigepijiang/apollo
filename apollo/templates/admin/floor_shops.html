@@ -1,6 +1,62 @@
 {% extends 'admin/layout.html' %}
 
 {% block container %}
+	<div class="shopinfo-container clearfix">
+        <div class="btn-wrap col-sm-2">
+			<a id="saveBtn" href="#" class="btn btn-primary" role="button">保存</a>
+			<!-- <a id="nextBtn" href="#" class="btn btn-default" role="button" data-operation="">下一步</a> -->
+		</div>
+		<div id="canvasContainer"></div>
+	</div>
+
+	<div  id="shopForm" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title">商店信息</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="exampleInputEmail1">店铺名</label>
+						<input type="text" class="form-control" id="shopNameInput" placeholder="输入店铺名">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">联系方式</label>
+						<input type="text" class="form-control" id="shopTelInput" placeholder="输入联系方式">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<div  id="iconForm" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title">图标信息</h4>
+				</div>
+				<div class="modal-body">
+					<select id="iconType" class="form-control">
+						<option value="bathroom">卫生间</option>
+						<option value="stair">楼梯</option>
+						<option value="lift">电梯</option>
+						<option value="movingStair">扶梯</option>
+						<option value="cashierDesk">收银台</option>
+					</select>
+				</div>
+				<div class="modal-footer">
+					<!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
 {% endblock %}
 
 {% block scripts %}
@@ -9,5 +65,6 @@
         layout = {{ layout.data|tojson|safe }};
 </script>
 {{ super() }}
-<script src="{{ static_file('js/admin/drawPlan.js') }}"></script>
+<script src="{{ static_file('js/lib/kinetic.js') }}"></script>
+<script src="{{ static_file('js/admin/shops.js') }}"></script>
 {% endblock %}
