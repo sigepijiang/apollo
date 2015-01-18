@@ -54,16 +54,21 @@ def upgrade():
         sa.Column('logo', sa.CHAR(32)),
         sa.Column('phone', sa.String(16)),
         sa.Column(
-            'area_type',
-            sa.Enum(
-                'shop', 'escalator', 'lift', 'exit', 'hydrant', 'counter',
-                'garbage', 'phone', 'restaurant', 'wc', 'stair',
-                name='shop_area_type_enum',
-            )
-        ),
-        sa.Column(
             'date_created', sa.DateTime(), default=datetime.now,
             server_default=sa.func.now(),
+        ),
+    )
+    op.create_table(
+        'facility',
+        sa.Column('id', sa.Integer(), primary_key=True),
+        sa.Column('floor_id', sa.Integer()),
+        sa.Column(
+            'facility_type',
+            sa.Enum(
+                'escalator', 'lift', 'exit', 'hydrant', 'counter',
+                'garbage', 'phone', 'restaurant', 'wc', 'stair',
+                name='shop_facility_type_enum',
+            )
         ),
     )
 
@@ -84,5 +89,5 @@ def downgrade():
     op.drop_table('shop')
     op.drop_table('floor')
     op.drop_table('market')
-    ENUM(name='shop_area_type_enum').drop(
+    ENUM(name='shop_facility_type_enum').drop(
         op.get_bind(), checkfirst=False)

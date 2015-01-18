@@ -26,8 +26,9 @@ class MarketShopAPI(RESTfulOpenAPI):
         shop.floor_id = floor_id
 
         db.session.commit()
-        floor.layout.data.set_default(
-            'shop_data', {})[index] = shop.as_dict()
+        shop_data = floor.layout.data.get('shop_data', {})
+        shop_data[index] = shop.as_dict()
+        floor.layout.data['shop_data'] = shop_data
         db.session.commit()
         return shop.as_dict()
 
@@ -38,15 +39,16 @@ class MarketShopAPI(RESTfulOpenAPI):
             return
         return shop.as_dict()
 
-    @resful_validator(forms.id, forms.floor_id, forms.name, forms.phone,
-                      forms.index, )
-    def create(self, name, phone, id, floor_id, index):
+    @resful_validator(forms.floor_id, forms.name, forms.phone,
+                      forms.index)
+    def create(self, name, phone, floor_id, index):
         shop = MarketShopModel(name=name, phone=phone, floor_id=floor_id)
         db.session.add(shop)
         db.session.commit()
 
         floor = MarketFloorModel.query.get(floor_id)
-        floor.layout.data.set_default(
-            'shop_data', {})[index] = shop.as_dict()
+        shop_data = floor.layout.data.get('shop_data', {})
+        shop_data[index] = shop.as_dict()
+        floor.layout.data['shop_data'] = shop_data
         db.session.commit()
         return shop.as_dict()

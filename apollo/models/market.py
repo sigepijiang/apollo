@@ -13,6 +13,7 @@ __all__ = [
     'MarketModel',
     'MarketFloorModel',
     'MarketShopModel',
+    'MarketFacilityModel',
     'MarketFloorLayoutModel'
 ]
 
@@ -59,6 +60,27 @@ class MarketFloorModel(db.Model, db.TableOpt):
     )
 
 
+class MarketFacilityModel(db.Model, db.TableOpt):
+    __tablename__ = 'facility'
+
+    id = sa.Column(sa.Integer(), primary_key=True)
+    floor_id = sa.Column(sa.Integer())
+    facility_type = sa.Column(
+        sa.Enum(
+            'escalator', 'lift', 'exit', 'hydrant', 'counter',
+            'garbage', 'phone', 'restaurant', 'wc', 'stair',
+            name='shop_facility_type_enum',
+        )
+    )
+
+    def as_dict(self):
+        return {
+            'id': self.id,
+            'floor_id': self.floor_id,
+            'facility_type': self.facility_type,
+        }
+
+
 class MarketShopModel(db.Model, db.TableOpt):
     __tablename__ = 'shop'
 
@@ -67,13 +89,6 @@ class MarketShopModel(db.Model, db.TableOpt):
     name = sa.Column(sa.Unicode(32), nullable=False)
     logo = sa.Column(sa.String(32))
     phone = sa.Column(sa.String(16))
-    area_type = sa.Column(
-        sa.Enum(
-            'shop', 'escalator', 'lift', 'exit', 'hydrant', 'counter',
-            'garbage', 'phone', 'restaurant', 'wc', 'stair',
-            name='shop_area_type_enum',
-        )
-    )
     date_created = sa.Column(
         sa.DateTime(), default=datetime.now,
         server_default=sa.func.NOW(),
@@ -93,7 +108,6 @@ class MarketShopModel(db.Model, db.TableOpt):
             'floor_id': self.floor_id,
             'name': self.name,
             'phone': self.phone,
-            'area_type': self.area_type,
         }
 
 
