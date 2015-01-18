@@ -14,6 +14,10 @@ id = {
     voluptuous.Required('id'): voluptuous.Coerce(int),
 }
 
+index = {
+    voluptuous.Required('index'): voluptuous.Coerce(int),
+}
+
 floor_id = {
     voluptuous.Required('floor_id'): voluptuous.Coerce(int),
 }
