@@ -16,6 +16,8 @@ from alembic import op
 import sqlalchemy as sa
 from share.sa.types import JSONType
 
+from sqlalchemy.dialects.postgresql import ENUM
+
 
 def upgrade():
     op.create_table(
@@ -52,6 +54,14 @@ def upgrade():
         sa.Column('logo', sa.CHAR(32)),
         sa.Column('phone', sa.String(16)),
         sa.Column(
+            'area_type',
+            sa.Enum(
+                'shop', 'escalator', 'lift', 'exit', 'hydrant', 'counter',
+                'garbage', 'phone', 'restaurant', 'wc', 'stair',
+                name='shop_area_type_enum',
+            )
+        ),
+        sa.Column(
             'date_created', sa.DateTime(), default=datetime.now,
             server_default=sa.func.now(),
         ),
@@ -74,3 +84,5 @@ def downgrade():
     op.drop_table('shop')
     op.drop_table('floor')
     op.drop_table('market')
+    ENUM(name='shop_area_type_enum').drop(
+        op.get_bind(), checkfirst=False)

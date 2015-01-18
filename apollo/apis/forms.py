@@ -30,6 +30,13 @@ phone = {
     voluptuous.Required('phone'): voluptuous.Coerce(unicode),
 }
 
+area_type = {
+    voluptuous.Required('area_type'): voluptuous.Any(
+        'shop', 'escalator', 'lift', 'exit', 'hydrant', 'counter',
+        'garbage', 'phone', 'restaurant', 'wc', 'stair'
+    )
+}
+
 gender = {}
 title = {}
 summary = {}

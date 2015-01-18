@@ -67,6 +67,13 @@ class MarketShopModel(db.Model, db.TableOpt):
     name = sa.Column(sa.Unicode(32), nullable=False)
     logo = sa.Column(sa.String(32))
     phone = sa.Column(sa.String(16))
+    area_type = sa.Column(
+        sa.Enum(
+            'shop', 'escalator', 'lift', 'exit', 'hydrant', 'counter',
+            'garbage', 'phone', 'restaurant', 'wc', 'stair',
+            name='shop_area_type_enum',
+        )
+    )
     date_created = sa.Column(
         sa.DateTime(), default=datetime.now,
         server_default=sa.func.NOW(),
@@ -86,6 +93,7 @@ class MarketShopModel(db.Model, db.TableOpt):
             'floor_id': self.floor_id,
             'name': self.name,
             'phone': self.phone,
+            'area_type': self.area_type,
         }
 
 
