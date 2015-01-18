@@ -17,7 +17,7 @@ class MarketShopAPI(RESTfulOpenAPI):
                       forms.index)
     def update(self, id, name, phone, floor_id, index):
         floor = MarketFloorModel.query.get(floor_id)
-        shop = MarketShopModel.qurey.get(id)
+        shop = MarketShopModel.query.get(id)
         if not shop or not floor:
             return
 
@@ -34,7 +34,7 @@ class MarketShopAPI(RESTfulOpenAPI):
 
     @resful_validator(forms.id)
     def get(self, id):
-        shop = MarketShopModel.qurey.get(id)
+        shop = MarketShopModel.query.get(id)
         if not shop:
             return
         return shop.as_dict()

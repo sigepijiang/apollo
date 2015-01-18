@@ -17,7 +17,7 @@ class MarketFacilityAPI(RESTfulOpenAPI):
                       forms.index)
     def update(self, id, facility_type, floor_id, index):
         floor = MarketFloorModel.query.get(floor_id)
-        facility = MarketFacilityModel.qurey.get(id)
+        facility = MarketFacilityModel.query.get(id)
         if not facility or not floor:
             return
 
@@ -31,7 +31,7 @@ class MarketFacilityAPI(RESTfulOpenAPI):
 
     @resful_validator(forms.id)
     def get(self, id):
-        facility = MarketFacilityModel.qurey.get(id)
+        facility = MarketFacilityModel.query.get(id)
         if not facility:
             return
         return facility.as_dict()
