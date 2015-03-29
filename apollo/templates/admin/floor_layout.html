@@ -8,11 +8,12 @@
 
 {% block container %}
 	<div id="contentContainer" class="drawplan-container clearfix">
-        <div class="btn-wrap col-sm-2">
+        <div class="btn-wrap col-sm-4">
 			<a  id="saveBtn" href="#" class="btn btn-primary" role="button">保存</a>
+			<a  id="bgBtn" href="#" class="btn btn-default" role="button">修改背景</a>
 			<a  id="nextBtn" href="#" class="btn btn-default" role="button" data-operation="">下一步</a>
 		</div>
-		<div class="btn-wrap col-sm-6">
+		<div class="btn-wrap col-sm-4">
 			<a href="#" class="btn btn-info active" role="button" data-operation="bg">背景</a>
 			<a href="#" class="btn btn-info" role="button" data-operation="white">空地</a>
 			<a href="#" class="btn btn-info" role="button" data-operation="shop">店铺</a>
@@ -31,6 +32,25 @@
 		</canvas>
 		<ul id="pointList" class="point-list">
 		</ul>
+		<!-- Modal -->
+		<div class="modal fade" id="canvasBgModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel">选择楼层平面图</h4>
+					</div>
+					<div class="modal-body">
+						<input class="btn" id="bgInput" type="file" name="image">
+						<img class="tmp-img" id="bgTmpImg" src="">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 {% endblock %}
 
@@ -40,5 +60,6 @@
             layout = {{ layout.data|tojson|safe }};
     </script>
 	{{ super() }}
+	<script src="{{ static_file('js/lib/ajaxupload.js') }}"></script>
 	<script src="{{ static_file('js/admin/drawPlan.js') }}"></script>
 {% endblock%}
