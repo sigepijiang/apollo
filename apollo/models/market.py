@@ -8,6 +8,8 @@ from share.framework.bottle.engines import db
 from share.sa.types import JSONType
 from share.sa.mutable import MutableDict
 
+from share.sa.types import HashkeyType
+
 
 __all__ = [
     'MarketModel',
@@ -40,6 +42,7 @@ class MarketFloorModel(db.Model, db.TableOpt):
     market_id = sa.Column(sa.Integer())
     category = sa.Column(sa.Unicode(128))
     floor = sa.Column(sa.Integer())
+    background_image = sa.Column(HashkeyType())
     date_created = sa.Column(
         sa.DateTime(), default=datetime.now,
         server_default=sa.func.NOW(),

@@ -3,10 +3,27 @@
 from bottle import request
 
 from share.framework.bottle.restful import RESTfulOpenAPI
+from share.framework.bottle.restful.validator import resful_validator
 from share.framework.bottle.engines import db
 from share.framework.bottle.errors import APIBadRequest
 
 from apollo.models import MarketFloorModel, MarketFloorLayoutModel
+from . import forms
+
+
+class MarketFloorBGIAPI(RESTfulOpenAPI):
+    path = '/market/floor/background_image'
+    methods = ['POST']
+
+    @resful_validator(forms.floor_id, forms.background_image)
+    def create(self, floor_id, background_image):
+        floor = MarketFloorModel.query.get(floor_id)
+
+        if not floor:
+            raise APIBadRequest('Floor<%s> is not found' % floor_id)
+
+        floor.background_image = background_image
+        db.session.commit()
 
 
 class MarketFloorAPI(RESTfulOpenAPI):

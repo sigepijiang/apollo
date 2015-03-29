@@ -37,6 +37,11 @@ facility_type = {
     )
 }
 
+background_image = {
+    voluptuous.Required('background_image'): voluptuous.Coerce(str),
+}
+
+
 gender = {}
 title = {}
 summary = {}

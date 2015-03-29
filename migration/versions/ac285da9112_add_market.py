@@ -14,7 +14,7 @@ from datetime import datetime
 
 from alembic import op
 import sqlalchemy as sa
-from share.sa.types import JSONType
+from share.sa.types import JSONType, HashkeyType
 
 from sqlalchemy.dialects.postgresql import ENUM
 
@@ -40,6 +40,7 @@ def upgrade():
         sa.Column('market_id', sa.Integer()),
         sa.Column('category', sa.Unicode(128)),
         sa.Column('floor', sa.Integer()),
+        sa.Column('background_image', HashkeyType()),
         sa.Column(
             'date_created', sa.DateTime(), default=datetime.now,
             server_default=sa.func.now(),
@@ -89,5 +90,6 @@ def downgrade():
     op.drop_table('shop')
     op.drop_table('floor')
     op.drop_table('market')
+    op.drop_table('facility')
     ENUM(name='shop_facility_type_enum').drop(
         op.get_bind(), checkfirst=False)
