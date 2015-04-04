@@ -6,6 +6,7 @@ import sqlalchemy as sa
 
 from share.framework.bottle.engines import db
 from share.sa.types import JSONType
+from share.utils.image import image_for
 from share.sa.mutable import MutableDict
 
 from share.sa.types import HashkeyType
@@ -53,7 +54,8 @@ class MarketFloorModel(db.Model, db.TableOpt):
         primaryjoin='MarketFloorModel.market_id == MarketModel.id',
         foreign_keys='[MarketFloorModel.market_id]',
         lazy='joined',
-        backref=db.backref('floors', lazy='dynamic')
+        backref=db.backref(
+            'floors', lazy='dynamic', order_by='MarketFloorModel.floor.asc()')
     )
     layout = db.relationship(
         'MarketFloorLayoutModel',
@@ -61,6 +63,16 @@ class MarketFloorModel(db.Model, db.TableOpt):
         foreign_keys='[MarketFloorLayoutModel.floor_id]',
         lazy='joined', uselist=False,
     )
+
+    def as_dict(self):
+        return {
+            'id': self.id,
+            'market_id': self.market_id,
+            'category': self.category,
+            'floor': self.floor,
+            'background_image': image_for(self.background_image),
+            'layout': self.layout.as_dict()
+        }
 
 
 class MarketFacilityModel(db.Model, db.TableOpt):
@@ -124,3 +136,11 @@ class MarketFloorLayoutModel(db.Model, db.TableOpt):
         sa.DateTime(), default=datetime.now,
         server_default=sa.func.NOW(),
     )
+
+    def as_dict(self):
+        return {
+            'id': self.id,
+            'floor_id': self.floor_id,
+            'data': self.data,
+            'date_created': self.date_created.isoformat(),
+        }

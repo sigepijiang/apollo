@@ -10,7 +10,7 @@ class HomeView(MethodView):
     def get(self):
         market = MarketModel.query.first()
         return {
-            'floor_data': [i.layout.data for i in market.floors.all()]}
+            'floor_data': [i.as_dict() for i in market.floors.all()]}
 
 
 class AboutView(MethodView):
