@@ -11,6 +11,7 @@
         <title>index</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
+        <link href="{{ static_file('css/lib/bootstrap.css') }}" rel="stylesheet" type="text/css"/>
         <link href="{{ static_file('css/apollo/main.css') }}" rel="stylesheet" type="text/css"/>
         <link href="{{ static_file('css/apollo/index.css') }}" rel="stylesheet" type="text/css"/>
 
@@ -92,4 +93,7 @@
             </div>
         </div> -->
     </body>
+    <script>
+        var floorData = {{ floor_data|tojson|safe }};
+    </script>   
 </html>
