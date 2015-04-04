@@ -13,7 +13,7 @@
         {{ caller() }}
         {% else %}
         {% set field_class = 'form-control ' + ','.join(classes) %}
-        {{ field(class=field_class, id=field.id or ('input' + field.name), value=value or field.data or '', placeholder=field.description, texttype=texttype) }} 
+        {{ field(class=field_class, id=field.id or ('input' + field.name), value=(value or field.data or '')|unicode, placeholder=field.description, texttype=texttype) }} 
         {% endif %}
 
         {% if field.errors %}

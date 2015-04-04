@@ -4,7 +4,7 @@ from share.framework.bottle import MethodView, view
 
 
 class HomeView(MethodView):
-    @view('home.html')
+    @view('index.html')
     def get(self):
         return {}
 
