@@ -19,7 +19,8 @@ class MarketShopAPI(RESTfulOpenAPI):
         floor = MarketFloorModel.query.get(floor_id)
         shop = MarketShopModel.query.get(id)
         if not shop or not floor:
-            return
+            shop = MarketShopModel()
+            db.session.add(shop)
 
         shop.name = name
         shop.phone = phone
