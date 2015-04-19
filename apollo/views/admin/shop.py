@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*-
 
-from .base import AdminListView, AdminEditView
+from .base import AdminListView, AdminEditView, AdminOperationView
 
 from share.framework.bottle import render_template, MethodView
 from share.framework.bottle.engines import db
@@ -26,6 +26,12 @@ class ShopEditAdmin(AdminEditView):
     redirect_page = 'apollo:admin.shop_list'
     form = forms.ShopEditForm
     query_args = ['shop_id']
+
+
+class ShopOperationAdmin(AdminOperationView):
+    model_class = MarketShopModel
+    model_keys = ['id']
+    actions = ['kill']
 
 
 class FloorShopListAdmin(MethodView):

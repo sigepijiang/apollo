@@ -21,6 +21,7 @@
         <td>{{ m.description }}</td>
         <td>
             <a class='btn btn-default btn-primary' href="{{ url_for('apollo:admin.market_edit', market_id=m.id) }}">编辑</a>
+            <a class='btn btn-danger' href="javascript:void(0);" data-action="kill" data-confirm="true" data-after="remove" data-oid="{{ m.id  }}">删除</a>
         </td>
     </tr>
     {% endfor %}
@@ -29,5 +30,9 @@
 {% endblock %}
 
 {% block scripts %}
+<script>
+    var operatorURI = '/admin/market/operation/';
+</script>
 {{ super() }}
+<script type="text/javascript" src="{{ static_file('js/apollo/admin_list.js') }}"></script>
 {% endblock %}

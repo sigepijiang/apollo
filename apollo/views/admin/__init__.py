@@ -1,9 +1,10 @@
 #-*- coding: utf-8 -*-
 
 from share.framework.bottle.app import Blueprint
-from .market import MarketListAdmin, MarketEditAdmin
+from .market import MarketListAdmin, MarketEditAdmin, MarketOperationAdmin
 from .floor import FloorListAdmin, FloorEditAdmin, FloorLayoutEditAdmin
-from .shop import ShopListAdmin, ShopEditAdmin
+from .floor import FloorOperationAdmin
+from .shop import ShopListAdmin, ShopEditAdmin, ShopOperationAdmin
 
 bp_admin = Blueprint('admin', subdomain='www', url_prefix='/admin')
 
@@ -25,6 +26,12 @@ bp_admin.add_url_rule(
     methods=['GET', 'POST'],
     endpoint='market_create',
     defaults={'market_id': None}
+)
+bp_admin.add_url_rule(
+    '/market/operation/<id:int>/<action:re:kill>/',
+    view_func=MarketOperationAdmin.as_view(),
+    methods=['POST'],
+    endpoint='market_operation',
 )
 
 bp_admin.add_url_rule(
@@ -52,6 +59,12 @@ bp_admin.add_url_rule(
     methods=['GET', 'POST'],
     endpoint='floor_layout',
 )
+bp_admin.add_url_rule(
+    '/floor/operation/<id:int>/<action:re:kill>/',
+    view_func=FloorOperationAdmin.as_view(),
+    methods=['POST'],
+    endpoint='floor_operation',
+)
 
 bp_admin.add_url_rule(
     '/shop/',
@@ -71,6 +84,12 @@ bp_admin.add_url_rule(
     methods=['GET', 'POST'],
     endpoint='shop_create',
     defaults={'shop_id': None}
+)
+bp_admin.add_url_rule(
+    '/shop/operation/<id:int>/<action:re:kill>/',
+    view_func=ShopOperationAdmin.as_view(),
+    methods=['POST'],
+    endpoint='shop_operation',
 )
 
 
