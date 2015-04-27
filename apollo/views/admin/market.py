@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*-
 
-from .base import AdminListView, AdminEditView
+from .base import AdminListView, AdminEditView, AdminOperationView
 
 from apollo.models import MarketModel
 from . import forms
@@ -22,3 +22,9 @@ class MarketEditAdmin(AdminEditView):
     redirect_page = 'apollo:admin.market_list'
     form = forms.MarketEditForm
     query_args = ['market_id']
+
+
+class MarketOperationAdmin(AdminOperationView):
+    model_class = MarketModel
+    model_keys = ['id']
+    actions = ['kill']

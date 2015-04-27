@@ -3,6 +3,7 @@
 import sqlalchemy as sa
 from bottle import redirect, request
 
+from share.utils.decorators import signin_required
 from share.framework.bottle import MethodView, cached_property, url_for
 from share.framework.bottle import render_template
 from share.framework.bottle.engines import db
@@ -52,6 +53,7 @@ class AdminListView(MethodView):
             'title': self.title,
         }
 
+    @signin_required
     def get(self):
         return render_template(self.template, **self.context())
 
@@ -85,10 +87,12 @@ class AdminEditView(MethodView):
             'form': form,
         }
 
+    @signin_required
     def get(self, **kwargs):
         self.args = kwargs
         return render_template(self.template, **self.context())
 
+    @signin_required
     def post(self, **kwargs):
         self.args = kwargs
         form = self.form(request.forms)
@@ -105,3 +109,52 @@ class AdminEditView(MethodView):
         form.populate_obj(record)
         db.session.commit()
         return redirect(url_for(self.redirect_page))
+
+
+class AdminOperationView(MethodView):
+
+    model_class = None
+    model_keys = ['id']
+    actions = ['kill', 'recover']
+    reason = ''
+
+    @signin_required
+    def post(self, action, **keypairs):
+        self.set_keys(keypairs)
+        self.action = action
+        return self.dispatch()
+
+    def set_keys(self, keypairs):
+        self.key_tuple = tuple(keypairs.get(k, None)
+                               for k in self.model_keys)
+
+    def dispatch(self):
+        method = getattr(self, self.action, None)
+        if method is None:
+            return {}
+        return method()
+
+    @cached_property
+    def record(self):
+        row = self.model_class.query.get(self.key_tuple)
+        if not row:
+            return None
+        return row
+
+    def kill(self):
+        db.session.delete(self.record)
+        db.session.commit()
+        self.after_kill()
+        return {'ok': True}
+
+    def recover(self):
+        self.record.restore()
+        db.session.commit()
+        self.after_recover()
+        return {'ok': True}
+
+    def after_kill(self):
+        pass
+
+    def after_recover(self):
+        pass

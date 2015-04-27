@@ -4,7 +4,7 @@ from share.framework.bottle.engines import db
 from share.framework.bottle import MethodView, render_template
 
 from apollo.models import MarketFloorModel, MarketFloorLayoutModel
-from .base import AdminListView, AdminEditView
+from .base import AdminListView, AdminEditView, AdminOperationView
 from . import forms
 
 
@@ -24,6 +24,12 @@ class FloorEditAdmin(AdminEditView):
     redirect_page = 'apollo:admin.floor_list'
     form = forms.FloorEditForm
     query_args = ['floor_id']
+
+
+class FloorOperationAdmin(AdminOperationView):
+    model_class = MarketFloorModel
+    model_keys = ['id']
+    actions = ['kill']
 
 
 class FloorLayoutEditAdmin(MethodView):
