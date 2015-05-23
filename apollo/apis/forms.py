@@ -41,6 +41,10 @@ background_image = {
     voluptuous.Required('background_image'): voluptuous.Coerce(str),
 }
 
+shop_type = {
+    voluptuous.Required('shop_type'): voluptuous.Coerce(unicode)
+}
+
 
 gender = {}
 title = {}

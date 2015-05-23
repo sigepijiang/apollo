@@ -104,6 +104,7 @@ class MarketShopModel(db.Model, db.TableOpt):
     name = sa.Column(sa.Unicode(32), nullable=False)
     logo = sa.Column(sa.String(32))
     phone = sa.Column(sa.String(16))
+    shop_type = sa.Column(sa.Unicode(16))
     date_created = sa.Column(
         sa.DateTime(), default=datetime.now,
         server_default=sa.func.NOW(),
@@ -123,6 +124,7 @@ class MarketShopModel(db.Model, db.TableOpt):
             'floor_id': self.floor_id,
             'name': self.name,
             'phone': self.phone,
+            'shop_type': self.shop_type or '',
         }
 
 

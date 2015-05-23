@@ -14,8 +14,8 @@ class MarketShopAPI(RESTfulOpenAPI):
     methods = ['POST', 'GET', 'PUT']
 
     @resful_validator(forms.id, forms.name, forms.phone, forms.floor_id,
-                      forms.index)
-    def update(self, id, name, phone, floor_id, index):
+                      forms.index, forms.shop_type)
+    def update(self, id, name, phone, floor_id, index, shop_type):
         floor = MarketFloorModel.query.get(floor_id)
         shop = MarketShopModel.query.get(id)
         if not shop or not floor:
@@ -25,6 +25,7 @@ class MarketShopAPI(RESTfulOpenAPI):
         shop.name = name
         shop.phone = phone
         shop.floor_id = floor_id
+        shop.shop_type = shop_type
 
         db.session.commit()
         shop_data = floor.layout.data.get('shop_data', {})

@@ -1,86 +1,117 @@
-<!DOCTYPE html>
-    <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-    <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-    <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-    <!--[if gt IE 8]><!--> 
-<html class="no-js">
-<!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>index</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
-        <link href="{{ static_file('css/lib/bootstrap.css') }}" rel="stylesheet" type="text/css"/>
+{% extends 'base.html' %}
+
+{% block styles %}
+    {{ super() }}
+    <link href="{{ static_file('css/index.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+
+{% block content %}
+<!-- container -->
+<div class="nav-wrap">
+    <nav class="clearfix">
+        <a href="javascript: void 0;" class="mall-name">西单大悦城</a>
+        <div class="search-wrap">
+            <input type="text" name="search" placeholder="搜索">
+            <span class="icon-search"></span>
+        </div>
+    </nav>
+</div>
+<div class="container">
+    <section class="section">
+        <div class="header-wrap">
+            <img class="header-bg" src="{{ static_file('img/mall-header-bg.jpg') }}">
+            <div class="mall-header">
+                <h3>西单大悦城</h3>
+                <p>
+                    商场地址：<span>君太百货的北侧，西单北大街131号位于西单商业区的中心，南侧距长安街不足200米，北侧连通金融街和新街口特色商业区。(地铁1号线或4号线西单站)</span>
+                </p>
+                <p>营业时间：<span>10:00-21:00</span></p>
+                <p>联系电话：<span>010-66517777</span></p>
+                <p>停车信息：<span>西单有地下停车； 停车不方便； 可以用积分换停车券； 查看全部</span></p>
+                <p>人均消费：<span>¥330</span></p>
+                <p>推荐产品：<span>美食 (2404) ZARA (1736) 服装 (1564) 更多</span></p>
+            </div>
+        </div>
+        <div class="floor-header-wrap">
+            <div class="floor-header clearfix">
+                <span class="time-tag">10.1-10.7日</span>
+                <span class="discount">2.5折/全场500减200</span>
+                <span class="phone">电话： 010-59566688</span>
+            </div>
+        </div>
 <<<<<<< HEAD
-        <link href="{{ static_file('css/apollo/main.css') }}" rel="stylesheet" type="text/css"/>
-        <link href="{{ static_file('css/apollo/index.css') }}" rel="stylesheet" type="text/css"/>
+        <div class="canvas-wrap row-style">
+            <ul class="shop-list left">
+                <li data-index="1">Kappa卡帕</li>
+                <li>Kappa卡帕</li>
+                <li class="focus">Kappa卡帕</li>
+                <li>Kappa卡帕</li>
+                <li>Kappa卡帕</li>
+                <li>Kappa卡帕</li>
+                <li>Kappa卡帕</li>
+                <li>Kappa卡帕</li>
+            </ul>
+            <div id="canvasContainer" class="canvas-container">
+                This is a Canvas!@
+            </div>
+            <ul class="shop-list right">
+                <li>Kappa卡帕</li>
+                <li>Kappa卡帕</li>
+                <li>Kappa卡帕</li>
+                <li class="focus">Kappa卡帕</li>
+                <li>Kappa卡帕</li>
+                <li>Kappa卡帕</li>
+                <li>Kappa卡帕</li>
+                <li>Kappa卡帕</li>
+            </ul>
 =======
-        <link href="{{ static_file('css/index.css') }}" rel="stylesheet" type="text/css"/>
->>>>>>> 486a0f2ded8db4763ba5a85928bba8ef1c8f5411
-
-
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->         
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>           
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>         
-        <![endif]-->
-    </head>
-    <body>  
-        <!-- header -->
-        <!-- <header>
-            <nav class="navbar nav-layer navbar-fixed-top">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">有购OO</a>
+        <div class="container">
+            <section class="section">
+                <div class="header-wrap">
+                    <img class="header-bg" src="{{ static_file('img/mall-header-bg.jpg') }}">
+                    <div class="mall-header">
+                        <h3>西单大悦城</h3>
+                        <p>
+                            商场地址：<span>君太百货的北侧，西单北大街131号位于西单商业区的中心，南侧距长安街不足200米，北侧连通金融街和新街口特色商业区。(地铁1号线或4号线西单站)</span>
+                        </p>
+                        <p>营业时间：<span>10:00-21:00</span></p>
+                        <p>联系电话：<span>010-66517777</span></p>
+                        <p>停车信息：<span>西单有地下停车； 停车不方便； 可以用积分换停车券； 查看全部</span></p>
+                        <p>人均消费：<span>¥330</span></p>
+                        <p>推荐产品：<span>美食 (2404) ZARA (1736) 服装 (1564) 更多</span></p>
+                    </div>
                 </div>
-                <div class="navbar-collapse collapse navbar-inverse-collapse">
-                    <form id="search" class="navbar-form navbar-left">
-                        <div class="search-wrap form-control">
-                            <input id="searchTxt" type="text" maxlength="30" placeholder="搜索">
-                            <button type="submit" class=""></button>
-                        </div>
-                    </form>
-                    <ul class="nav navbar-nav navbar-right navbar-right-font">
-                        <li><a href="#">通知<span class="num">26</span></a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">gondola<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">设置</a></li>
-                            </ul>
-                        </li>
+                <div class="floor-header-wrap">
+                    <div class="floor-header clearfix">
+                        <p class="time-tag">10.1-10.7日</p>
+                        <p class="discount">2.5折/全场500减200</p>
+                        <p class="phone">电话： <span id="phone">010-59566688</span></p>
+                    </div>
+                </div>
+                <div class="canvas-wrap row-style">
+                    <ul class="shop-list left shopList">
+                    </ul>
+                    <div id="canvasContainer" class="canvas-container">
+                        This is a Canvas!@
+                    </div>
+                    <ul class="shop-list right shopList">
                     </ul>
                 </div>
-            </nav>
-        </header> -->
+            </section>
+>>>>>>> cea7fa66b7b4e0e88e308b5b6433b33f432e5969
+        </div>
+    </section>
+</div>
+{% endblock %}
 
 
-        <!-- container -->
-        <div class="container">
 
-        </div>   
-
-
-        <!-- footer -->
-        <!-- <div class="footer">
-            <div class="link">
-                <a href="#">回到首页</a>
-                <a href="#">官方应用</a>
-                <a href="#">微博</a>
-                <a href="#">微信</a>
-                <a href="#">关于我们</a>
-            </div>
-        </div> -->
-        <script type="text/javascript" src="{{ static_file('js/lib/jquery.js') }}"></script>
-        <script type="text/javascript" src="{{ static_file('js/avalon.js') }}"></script>
-        <script type="text/javascript" src="{{ static_file('js/apollo/index.js') }}"></script>
-    </body>
+{% block scripts %}
+    {{ super() }}
+    <script src="{{ static_file('js/lib/kinetic.js') }}"></script>
+    <script type="text/javascript" src="{{ static_file('js/apollo/index.js') }}"></script>
     <script>
         var floorData = {{ floor_data|tojson|safe }};
     </script>   
-</html>
+{% endblock %}
