@@ -42,8 +42,8 @@ class MarketShopAPI(RESTfulOpenAPI):
         return shop.as_dict()
 
     @resful_validator(forms.floor_id, forms.name, forms.phone,
-                      forms.index)
-    def create(self, name, phone, floor_id, index):
+                      forms.index, forms.shop_type)
+    def create(self, name, phone, floor_id, index, shop_type):
         shop = MarketShopModel(name=name, phone=phone, floor_id=floor_id)
         db.session.add(shop)
         db.session.commit()

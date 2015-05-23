@@ -49,8 +49,6 @@
         {% block scripts %}
         <script type="text/javascript" src="{{ static_file('js/lib/jquery.js') }}"></script>
         <script type="text/javascript" src="{{ static_file('js/avalon.js') }}"></script>
-        <script src="{{ static_file('js/lib/kinetic.js') }}"></script>
-        <script type="text/javascript" src="{{ static_file('js/apollo/index.js') }}"></script>
         <script>
             var floorData = {{ floor_data|tojson|safe }};
         </script>   
