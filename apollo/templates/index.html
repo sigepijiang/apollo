@@ -5,7 +5,6 @@
     <link href="{{ static_file('css/index.css') }}" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
-
 {% block content %}
 <!-- container -->
 <div class="nav-wrap">
@@ -17,8 +16,10 @@
         </div>
     </nav>
 </div>
-<div class="container">
+<div class="container" id="fullpageContainer">
+    {% for floor in floor_data %}
     <section class="section">
+        {% if loop.first %}
         <div class="header-wrap">
             <img class="header-bg" src="{{ static_file('img/mall-header-bg.jpg') }}">
             <div class="mall-header">
@@ -33,30 +34,35 @@
                 <p>推荐产品：<span>美食 (2404) ZARA (1736) 服装 (1564) 更多</span></p>
             </div>
         </div>
+        {% endif %}
         <div class="floor-header-wrap">
             <div class="floor-header clearfix">
                 <p class="time-tag">10.1-10.7日</p>
                 <p class="discount">2.5折/全场500减200</p>
-                <p class="phone">电话： <span id="phone">010-59566688</span></p>
+                <p class="phone">电话： <span id="phone{{ loop.index }}">010-59566688</span></p>
             </div>
         </div>
         <div class="canvas-wrap row-style">
             <ul class="shop-list left shopList">
             </ul>
-            <div id="canvasContainer" class="canvas-container">
+            <div id="canvasContainer{{ loop.index }}" class="canvas-container">
                 This is a Canvas!@
             </div>
             <ul class="shop-list right shopList">
             </ul>
         </div>
     </section>
+    {% endfor %}
 </div>
 {% endblock %}
 
 
-
 {% block scripts %}
     {{ super() }}
+    <script type="text/javascript" src="{{ static_file('js/lib/jquery-ui.js') }}"></script>
+    <script type="text/javascript" src="{{ static_file('js/lib/jquery.slimscroll.min.js') }}"></script>
+    <script type="text/javascript" src="{{ static_file('js/lib/jquery.fullPage.min.js') }}"></script>
+    <script type="text/javascript" src="{{ static_file('js/avalon.js') }}"></script>
     <script src="{{ static_file('js/lib/kinetic.js') }}"></script>
     <script type="text/javascript" src="{{ static_file('js/apollo/index.js') }}"></script>
     <script>
