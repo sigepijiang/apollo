@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+    <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+    <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+    <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+    <!--[if gt IE 8]><!--> 
+<html class="no-js">
+<!--<![endif]-->
+    <head>
+        <title>index</title>
+        {% block meta %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        {% endblock %}
+
+        {% block styles %}
+        <link href="{{ static_file('css/lib/bootstrap.css') }}" rel="stylesheet" type="text/css"/>
+        {% endblock %}
+
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->         
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>           
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>         
+        <![endif]-->
+    </head>
+    <body>  
+        {% block header %}
+        {% endblock %}
+
+
+        {% block content %}
+        {% endblock %}
+
+
+        {% block footer %}
+        {% endblock %}
+
+        {% block scripts %}
+        <script type="text/javascript" src="{{ static_file('js/lib/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ static_file('js/avalon.js') }}"></script>
+        <script src="{{ static_file('js/lib/kinetic.js') }}"></script>
+        <script type="text/javascript" src="{{ static_file('js/apollo/index.js') }}"></script>
+        <script>
+            var floorData = {{ floor_data|tojson|safe }};
+        </script>   
+        {% endblock %}
+    </body>
+</html>
+
